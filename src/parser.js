@@ -19,7 +19,8 @@ function scheduleHtmlParser(providerRes) {
     const courseInfos = [];
     for (const item of data.doubleSectionSchedule) {
         const sections = item.time.timeCode.split('_').map(Number);
-        const day = parseInt(item.week.weekCode);
+        let day = parseInt(item.week.weekCode) - 1;
+        if (!day) day = 7;
         for (const course of item.courseList)
             courseInfos.push({
                 name: course.courseName,
